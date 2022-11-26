@@ -14,7 +14,8 @@ app.use(bodyParser.json());
 app.get("/", async (req, res) => {
   try {
     const users = await client.query("SELECT * FROM users;");
-    res.json({ users: users });
+    const posts = await client.query("SELECT * FROM posts where user_id = 1;");
+    res.json({ users, posts });
   } catch (err) {
     console.log(err);
   }
